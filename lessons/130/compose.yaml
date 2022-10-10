@@ -1,0 +1,55 @@
+---
+services:
+  go-app:
+    build: ./go-app
+    ports:
+      - 8081:8080
+    networks:
+      - private
+    environment:
+      - GIN_MODE=release
+
+  rust-app:
+    build: ./rust-app
+    ports:
+      - 8082:8080
+    networks:
+      - private
+
+  postgres:
+    image: postgres:14.5
+    ports:
+      - 5432:5432
+    networks:
+      - private
+    volumes:
+      - postgres:/data
+      # - postgres:/var/lib/postgresql/data/pgdata
+    environment:
+      PGDATA: /data
+      POSTGRES_PASSWORD: devops123
+
+  prometheus:
+    image: prom/prometheus:v2.39.1
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - private
+
+  grafana:
+    image: grafana/grafana:8.2.6
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana:/var/lib/grafana
+    networks:
+      - private
+
+networks:
+  private: {}
+
+volumes:
+  grafana: {}
+  postgres: {}
