@@ -5,7 +5,6 @@ use prometheus::register_histogram;
 use prometheus::{self, Encoder, Histogram, TextEncoder};
 use rand::RngCore;
 use serde::{Deserialize, Serialize};
-use std::async_iter;
 use std::time::Instant;
 use tokio;
 use tokio_postgres::{Client, Error, NoTls};

@@ -56,3 +56,5 @@ https://github.com/goriunov/actix-tokio-postgres-example/blob/master/src/main.rs
 gcc -Wall -o main main.c
 
 https://docs.aws.amazon.com/lambda/latest/dg/runtimes-walkthrough.html
+
+https://chamook.lol/rust-web-service/
